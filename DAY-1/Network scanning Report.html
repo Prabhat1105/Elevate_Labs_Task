@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Network Scanning Report</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background: #f9fafc;
+      color: #333;
+      line-height: 1.6;
+    }
+    h1, h2, h3 {
+      color: #1a4e8a;
+    }
+    h1 {
+      text-align: center;
+      border-bottom: 3px solid #1a4e8a;
+      padding-bottom: 10px;
+      margin-bottom: 30px;
+    }
+    section {
+      margin-bottom: 30px;
+    }
+    ul, ol {
+      margin: 10px 0 10px 30px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 10px;
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background: #1a4e8a;
+      color: #fff;
+    }
+    .recommendation {
+      background: #eef6ff;
+      border-left: 4px solid #1a4e8a;
+      padding: 10px 15px;
+      margin: 10px 0;
+    }
+    img {
+      max-width: 100%;
+      margin: 15px 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <h1>Network Scanning Report</h1>
+
+  <section>
+    <h2>Objective</h2>
+    <ul>
+      <li>Discover active hosts within subnet</li>
+      <li>Identify open TCP ports and services</li>
+      <li>Evaluate potential risks</li>
+    </ul>
+    <p><strong>Note:</strong> IP addresses are partially hidden for security reasons.</p>
+  </section>
+
+  <section>
+    <h2>Tools & Environment</h2>
+    <table>
+      <tr><th>Tool</th><th>Purpose</th></tr>
+      <tr><td>Nmap</td><td>Network discovery and port scanning</td></tr>
+      <tr><td>Wireshark</td><td>Packet capture & traffic analysis</td></tr>
+      <tr><td>OS</td><td>Windows</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Methodology</h2>
+    <ol>
+      <li>Install Nmap from official website</li>
+      <li>Identify local IP range (e.g., <code>192.168.1.0/24</code>)</li>
+      <li>Run <code>nmap -sS 192.168.1.0/24</code> for TCP SYN scan</li>
+      <li>Capture packets with Wireshark filter: <code>tcp.flags.syn == 1 &amp;&amp; tcp.flags.ack == 0</code></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Results</h2>
+    <table>
+      <tr><th>Host IP</th><th>Status</th><th>Open Ports</th><th>Common Services</th></tr>
+      <tr><td>10.106.x.x</td><td>Open</td><td>445</td><td>Microsoft-DS</td></tr>
+      <tr><td>10.106.x.x</td><td>Open</td><td>8080</td><td>HTTP Proxy</td></tr>
+      <tr><td>10.106.x.x</td><td>Open</td><td>1521</td><td>Oracle</td></tr>
+    </table>
+    <img src="C:\Users\hp\Pictures\Screenshots\Screenshot 2025-09-22 111158.png" alt="Nmap Scan Screenshot">
+  </section>
+
+  <section>
+    <h2>Analysis of Common Services</h2>
+    <h3>HTTP Proxy (Port 8080)</h3>
+    <p>Forwards client requests to external servers for caching or filtering.</p>
+
+    <h3>Oracle Database Listener (Port 1521)</h3>
+    <p>Accepts client connections to Oracle databases.</p>
+
+    <h3>Microsoft-DS / SMB (Port 445)</h3>
+    <p>Used for file sharing and Active Directory communication in Windows environments.</p>
+  </section>
+
+  <section>
+    <h2>Risks & Vulnerabilities</h2>
+    <ul>
+      <li><strong>HTTP Proxy:</strong> Can be abused for spam, phishing, and traffic relaying.</li>
+      <li><strong>Oracle Database Listener:</strong> Weak/default credentials and outdated versions pose security risks.</li>
+      <li><strong>Microsoft-DS / SMB:</strong> Exploited by ransomware like WannaCry (EternalBlue/MS17-010).</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Recommendations</h2>
+    <div class="recommendation">
+      <p><strong>HTTP Proxy:</strong> Require authentication, restrict to internal networks, monitor logs.</p>
+    </div>
+    <div class="recommendation">
+      <p><strong>Oracle Listener:</strong> Disable default accounts, enable password authentication, restrict access by IP, apply patches regularly.</p>
+    </div>
+    <div class="recommendation">
+      <p><strong>Microsoft-DS / SMB:</strong> Disable SMBv1, apply Windows patches, enforce Kerberos/NTLMv2, limit share permissions.</p>
+    </div>
+    <div class="recommendation">
+      <p>Close/disable unused ports and services, enforce strong passwords, enable MFA, keep firmware/software updated, and use firewalls.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Conclusion</h2>
+    <p>The TCP SYN scan successfully identified active hosts and open services within the subnet. Applying the above security measures reduces attack surface and improves protection of network resources.</p>
+  </section>
+</body>
+</html>
