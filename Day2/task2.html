@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Phishing Email Analysis Report</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background: #ffffff;
+      color: #222;
+      line-height: 1.6;
+    }
+    h1, h2 {
+      color: #1a1a1a;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+    h2 {
+      font-size: 18px;
+      margin-top: 25px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 4px;
+    }
+    .meta {
+      color: #555;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    ul {
+      margin: 10px 0 10px 20px;
+    }
+    li {
+      margin-bottom: 6px;
+    }
+    code {
+      background: #f3f3f3;
+      padding: 2px 4px;
+      border-radius: 3px;
+      font-size: 90%;
+    }
+    pre {
+      background: #f8f8f8;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      overflow-x: auto;
+      font-size: 14px;
+    }
+    footer {
+      margin-top: 30px;
+      font-size: 13px;
+      color: #555;
+      border-top: 1px solid #ddd;
+      padding-top: 8px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>Phishing Email Analysis Report</h1>
+  <div class="meta">Elevate Labs Internship Task 2 </div>
+
+  <h2>1. Email Summary</h2>
+  <ul>
+    <li><strong>Subject:</strong> Urgent: Verify Your Account</li>
+    <li><strong>From:</strong> "Phishy Bank" &lt;security@phishybank.com&gt;</li>
+    <li><strong>To:</strong> victim@example.com</li>
+    <li><strong>Reply-To:</strong> "Phishy Support" &lt;support@phishybank.com&gt;</li>
+    <li><strong>Date:</strong> Tue, 23 Sep 2025 12:08:06 +0530</li>
+    <li><strong>Message-ID:</strong> &lt;CAH9V34sK1m3YrBChg=6M6_dMXWb1iW7+9ja6WU_y3op_iuaDng@phishybank.com&gt;</li>
+  </ul>
+
+  <h2>2. Header Analysis</h2>
+  <ul>
+    <li><strong>DMARC:</strong> No DMARC record found for <code>phishybank.com</code>.</li>
+    <li><strong>SPF:</strong> SPF authenticated for <code>192.0.2.123</code> (but not conclusive by itself).</li>
+    <li><strong>DKIM:</strong> No DKIM-Signature present.</li>
+    <li><strong>Received chain:</strong> 203.0.113.55 → mail.phishybank.com → mail.example.com (601 sec delay).</li>
+    <li><strong>From vs Reply-To mismatch:</strong> <code>security@phishybank.com</code> vs <code>support@phishybank.com</code>.</li>
+  </ul>
+
+  <h2>3. Body / Content Indicators</h2>
+  <ul>
+    <li><strong>Urgent language:</strong> "Verify your account immediately."</li>
+    <li><strong>Suspicious URL (display vs actual):</strong><br>
+      Visible: <code>https://www.paypal.com/verify</code><br>
+      Actual: <code>http://login.verify-now[.]ru/secure?id=ABC123</code>
+    </li>
+    <li><strong>Greeting:</strong> Generic "Dear Customer".</li>
+    <li><strong>Threatening tone:</strong> "Your account will be suspended within 24 hours."</li>
+    <li><strong>Brand spoofing:</strong> Pretends to be PayPal.</li>
+    <li><strong>Attachments:</strong> None in this sample.</li>
+    <li><strong>Spelling / Grammar:</strong> Minor typos and awkward formatting.</li>
+  </ul>
+
+  <h2>4. URL & Domain Analysis</h2>
+  <ul>
+    <li><strong>URL found:</strong> <code>http://login.verify-now[.]ru/secure?id=ABC123</code></li>
+    <li><strong>VirusTotal:</strong> Detected as malicious by several vendors.</li>
+    <li><strong>urlscan.io:</strong> Shows redirects to <code>maliciouscdn[.]xyz</code> and fake PayPal login page.</li>
+    <li><strong>WHOIS:</strong> Domain registered recently, privacy-protected → suspicious.</li>
+  </ul>
+
+  <h2>5. Phishing Traits Identified</h2>
+  <ol>
+    <li>No DMARC / DKIM authentication.</li>
+    <li>Reply-To mismatch.</li>
+    <li>Suspicious / mismatched URLs.</li>
+    <li>Urgent and threatening language.</li>
+    <li>Brand impersonation (PayPal spoof).</li>
+  </ol>
+
+  <h2>6. Conclusion & Recommendations</h2>
+  <p><strong>Conclusion:</strong> This is a confirmed phishing attempt designed to steal credentials.</p>
+  <ul>
+    <li>Delete and report the email.</li>
+    <li>Block domains/IPs: <code>phishybank.com</code>, <code>login.verify-now.ru</code>, <code>203.0.113.55</code>, <code>192.0.2.123</code>.</li>
+    <li>Implement DMARC, DKIM, SPF on legitimate domains.</li>
+    <li>Educate users to hover over links and enable MFA.</li>
+  </ul>
+
+  <h2>7. Evidence (Header Excerpt)</h2>
+  <pre>
+MIME-Version: 1.0
+Date: Tue, 23 Sep 2025 12:08:06 +0530
+Message-ID: &lt;CAH9V34sK1m3YrBChg=6M6_dMXWb1iW7+9ja6WU_y3op_iuaDng@phishybank.com&gt;
+Subject: Urgent: Verify Your Account
+From: "Phishy Bank" &lt;security@phishybank.com&gt;
+To: victim@example.com
+Reply-To: "Phishy Support" &lt;support@phishybank.com&gt;
+Received: from unknown (HELO mail.phishybank.com) (192.0.2.123)
+        by mail.example.com with SMTP; Tue, 23 Sep 2025 12:08:07 +0530
+Received: from 203.0.113.55 by mail.phishybank.com with SMTP; Tue, 23 Sep 2025 11:58:06 +0530
+  </pre>
+
+  <footer>
+    Phishing Email Analysis Report — Internship Task 2 · 
+  </footer>
+</body>
+</html>
