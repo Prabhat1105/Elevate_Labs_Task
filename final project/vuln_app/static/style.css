@@ -1,0 +1,77 @@
+/* vuln_app/static/style.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+header {
+    background: #333;
+    color: #fff;
+    padding-top: 30px;
+    min-height: 70px;
+    border-bottom: #e44d26 3px solid; 
+}
+header h1 {
+    text-align: center;
+    text-transform: uppercase;
+    margin: 0;
+}
+nav {
+    text-align: center;
+    padding: 10px 0;
+}
+nav a {
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 16px;
+    margin: 0 15px;
+    padding: 5px;
+    transition: color 0.3s;
+}
+nav a:hover {
+    color: #e44d26;
+}
+.product {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+.product h3 {
+    color: #e44d26;
+}
+pre {
+    background-color: #eee;
+    padding: 10px;
+    border-radius: 5px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+.error, .message {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+.error {
+    background-color: #fdd;
+    border: 1px solid #f00;
+    color: #f00;
+}
+.message {
+    background-color: #dfd;
+    border: 1px solid #0a0;
+    color: #0a0;
+}
