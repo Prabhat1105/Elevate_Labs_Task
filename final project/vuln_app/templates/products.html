@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Products</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header><div class="container"><h1>Product Catalog</h1></div></header>
+    <div class="container">
+        <h2>Search Products</h2>
+        <form action="{{ request.path }}" method="get">
+            <label for="q">Search:</label>
+            <input name="q" id="q" value="{{ query }}" placeholder="Search by name..."><br><br>
+            <button type="submit">Search</button>
+        </form>
+
+        <hr>
+        
+        <h3>Results for "{{ query }}"</h3>
+        <p>Executed SQL: <pre>{{ sql }}</pre></p>
+        
+        {% for r in rows %}
+            <div class="product">
+                <h3>{{ r[1] }}</h3>
+                <p>{{ r[2] }}</p>
+                <strong>Price: ${{ r[3] }}</strong>
+            </div>
+        {% else %}
+            <p class="error">No results found.</p>
+        {% endfor %}
+
+        <p><a href="/">Back to Home</a></p>
+    </div>
+</body>
+</html>

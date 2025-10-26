@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>SQLi Playground - MySQL</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>MySQL SQLi Playground</h1>
+            <nav>
+                <a href="/products">Vulnerable Products Search</a>
+                <a href="/login">Vulnerable Login</a>
+                <a href="/secure_products">Secure Products Search</a>
+                <a href="/secure_login">Secure Login</a>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <h2>Welcome to the SQL Injection Demonstration Lab!</h2>
+        <p>This application uses a MySQL backend.</p>
+        
+        <h3>The Goal</h3>
+        <p>Demonstrate how malicious user input can change the meaning of a query (Vulnerable App) and how Parameterized Queries prevent this (Secure App).</p>
+    </div>
+</body>
+</html>

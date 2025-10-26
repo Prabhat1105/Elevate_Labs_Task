@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>User Dashboard</h1>
+            <nav>
+                <a href="/">Logout</a>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <h2>Success! Welcome, User {{ user_id }}</h2>
+        <p>This page confirms you successfully logged in.</p>
+        <p>In a real application, you would now have access to user-specific content.</p>
+        
+        <p class="message">
+            Your login was successful, either through valid credentials 
+            or through a **successful SQL Injection attack** if you bypassed the login.
+        </p>
+    </div>
+</body>
+</html>
